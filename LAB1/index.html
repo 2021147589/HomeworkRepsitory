@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <h1>안녕하세요 이재훈입니다.</h1>
+    </head>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+<script>
+
+    // Function to handle CSV parsing and replace table data
+    function loadCSV() {
+        Papa.parse('movies_metadata.csv', {
+            download: true,
+            header: false,
+            complete: function(results) {
+                // Extract the rows we need: 7208, 3100, 33559
+                var row7208 = results.data[7209]; // Adjusting for 0-indexed array
+                var row3100 = results.data[3100];
+                var row33559 = results.data[33563];
+
+                document.getElementById('title1').innerText = row7208[21]; //title
+                document.getElementById('quote1').innerText = row7208[20]; //quote
+
+                document.getElementById('title2').innerText = row3100[21];
+                document.getElementById('quote2').innerText = row3100[20]
+
+                document.getElementById('title3').innerText = row33559[21];
+                document.getElementById('quote3').innerText = row33559[20];
+            }
+        });
+    }
+    window.onload = loadCSV;
+</script>
+
+    
+        <h3>다음은 제가 영화를 볼때 자주 방문하는 웹페이지들입니다. 해당 사이트들을 누르면 접속이 가능합니다.</h3>
+    
+        <ul>
+            <li><a href="https://www.imdb.com/">IMDB</a></li>
+            <li><a href="https://www.netflix.com/">Netflix</a></li>
+        </ul>
+    
+        <table border="1">
+            <caption>표1. Top3 영화</caption>
+
+            <tr>
+                <td rowspan="2" style="text-align: center; font-weight: bold;">순위</td>
+                <td colspan="3" style="text-align: center; font-weight: bold;">영화 정보</td>
+            </tr>
+
+            <tr>
+                <th>제목</th>
+                <th>포스터</th>
+                <th>명대사</th>
+            </tr>
+            
+            <tr>
+                <td>1</td>
+                <td id="title1">.</td>
+                <td><img src="이터널_선샤인_포스터.jpg" alt="이터널_선샤인_포스터" width="200" height="300"></td>
+                <td id="quote1">.</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td id="title2">.</td>
+                <td><img src="스타이즈본_포스터.jpg" alt="스타이즈본_포스터" width="200" height="300"></td>
+                <td id="quote2">.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td id="title3">.</td>
+                <td><img src="돈룩업_포스터.jpg" alt="돈룩업_포스터" width="200" height="300"></td>
+                <td id="quote3">.</td>
+            </tr>
+        </table>
+    </body>
+</html>
